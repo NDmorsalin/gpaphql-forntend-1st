@@ -1,6 +1,22 @@
 import React from 'react'
 import { FaBan } from 'react-icons/fa'
+import { gql, useMutation } from '@apollo/client'
+
+// Define mutation
+
+const DELETE_CLIENT = gql`
+  mutation deleteClient($id: ID!) {
+    deleteClient(id: $id) {
+      id
+      name
+      email
+      phone
+    }
+  }
+`
+
 const ClientRow = ({ client }) => {
+  const [deleteClient] = useMutation(DELETE_CLIENT)
   return (
     <tr className="hover:bg-gray-100 dark:hover:bg-gray-700">
       <td className="p-4 w-4">
@@ -26,6 +42,7 @@ const ClientRow = ({ client }) => {
       </td>
       <td className="">
         <button
+          onClick={() => deleteClient({ variables: { id: client.id } })}
           className="w-10 h-10   flex items-center justify-center  bg-orange-500 hover:bg-orange-700 text-white font-bold rounded-full"
           type="button"
         >
