@@ -12,8 +12,8 @@ const GET_CLIENTS = gql`
 `;
 
 const GET_CLIENT = gql`
-  query client($myId: String!) {
-    client(id: $myId) {
+  query getSingleClient($id: ID!) {
+    client(id: $id) {
       id
       name
       email

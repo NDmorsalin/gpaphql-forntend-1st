@@ -2,7 +2,7 @@ import React from 'react'
 import { FaBan } from 'react-icons/fa'
 import { gql, useMutation, useQuery } from '@apollo/client'
 
-const ClientRow = ({ client, setSingleClientInfo }) => {
+const ClientRow = ({ client, setSingleClientId }) => {
   // const [deleteClient] = useMutation(DELETE_CLIENT)
   return (
     <>
@@ -20,7 +20,7 @@ const ClientRow = ({ client, setSingleClientInfo }) => {
           </div>
         </td>
         <td
-          onClick={() => setSingleClientInfo({...client})}
+          onClick={() => setSingleClientId(client.id)}
           className="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"
         >
           {client.name}
