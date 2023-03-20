@@ -8,17 +8,13 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 })
 function App() {
-  const [clicked, setClicked] = useState(false)
+  // const [clicked, setClicked] = useState(false)
   // console.log(client);
   return (
     <ApolloProvider client={client}>
       <div className="container mx-auto">
         <Header />
-        <button type="button" onClick={() => setClicked(true)}>
-          {' '}
-          load client
-        </button>
-        {clicked && <Client />}
+        <Client />
       </div>
     </ApolloProvider>
   )

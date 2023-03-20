@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import { gql, useQuery } from '@apollo/client'
 import ClientRow from './ClientRow'
 
-import {GET_CLIENTS} from '../query/allQuery'
+import { GET_CLIENTS } from '../query/allQuery'
 import SingleClient from './SingleClient'
 
 const Client = () => {
   const { loading, error, data } = useQuery(GET_CLIENTS)
   const [singleClientId, setSingleClientId] = useState(null)
- 
+
   if (loading) {
     return <p>Loading...</p>
   }
@@ -19,7 +19,7 @@ const Client = () => {
     <>
       {!loading && !error && data && (
         <div>
-          <h1>Client</h1>
+          <h1 className="text-center text-3xl font-bold mb-4" >All Clients</h1>
 
           <div className="max-w-2xl mx-auto">
             <div className="flex flex-col">
@@ -79,9 +79,10 @@ const Client = () => {
               </div>
             </div>
           </div>
-          
-            {singleClientId && <SingleClient clientId={singleClientId}  ></SingleClient>}
-                          
+
+          {singleClientId && (
+            <SingleClient clientId={singleClientId}></SingleClient>
+          )}
         </div>
       )}
     </>
