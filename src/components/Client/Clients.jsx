@@ -1,18 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { gql, useQuery } from '@apollo/client'
 import ClientRow from './ClientRow'
-const GET_CLIENT = gql`
-  query {
-    clients {
-      id
-      name
-      email
-      phone
-    }
-  }
-`
+
+import { GET_CLIENTS } from '../query/allQuery'
+import UpdateClient from './UpdateClient'
+
 const Client = () => {
-  const { loading, error, data } = useQuery(GET_CLIENT)
+  const { loading, error, data } = useQuery(GET_CLIENTS)
+  const [singleClientInfo, setSingleClientInfo] = useState({})
 
   if (loading) {
     return <p>Loading...</p>
@@ -74,6 +69,7 @@ const Client = () => {
                           <ClientRow
                             key={client.id}
                             client={client}
+                            setSingleClientInfo={setSingleClientInfo}
                           ></ClientRow>
                         ))}
                       </tbody>
@@ -84,7 +80,9 @@ const Client = () => {
             </div>
           </div>
 
-         
+          {Object.keys(singleClientInfo).length > 0 && (
+            <UpdateClient singleClientInfo={singleClientInfo}></UpdateClient>
+          )}
         </div>
       )}
     </>
