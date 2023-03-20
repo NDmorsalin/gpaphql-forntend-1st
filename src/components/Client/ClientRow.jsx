@@ -1,9 +1,10 @@
 import React from 'react'
 import { FaBan } from 'react-icons/fa'
 import { gql, useMutation, useQuery } from '@apollo/client'
+import { DELETE_CLIENT } from '../query/allQuery'
 
 const ClientRow = ({ client, setSingleClientId }) => {
-  // const [deleteClient] = useMutation(DELETE_CLIENT)
+  const [deleteClient] = useMutation(DELETE_CLIENT)
   return (
     <>
       <tr className="hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -33,7 +34,13 @@ const ClientRow = ({ client, setSingleClientId }) => {
         </td>
         <td className="">
           <button
-            onClick={() => deleteClient({ variables: { id: client.id } })}
+            onClick={() =>
+              deleteClient({
+                variables: {
+                  id: client.id,
+                },
+              })
+            }
             className="w-10 h-10   flex items-center justify-center  bg-orange-500 hover:bg-orange-700 text-white font-bold rounded-full"
             type="button"
           >
