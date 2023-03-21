@@ -8,7 +8,7 @@ import SingleClient from './SingleClient'
 const Client = () => {
   const { loading, error, data } = useQuery(GET_CLIENTS)
   const [singleClientId, setSingleClientId] = useState(null)
-
+  // console.log({ loading, error, data })
   if (loading) {
     return <p>Loading...</p>
   }
