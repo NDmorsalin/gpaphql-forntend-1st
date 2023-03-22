@@ -7,21 +7,16 @@ import {
   GET_SINGLE_PROJECT,
 } from '../components/query/projectQuery'
 import UpdateProject from '../components/Project/UpdateProject'
+import DeleteProject from '../components/Project/DeleteProject'
 
 const SingleProject = () => {
   const { projectId } = useParams()
-  const navigate = useNavigate()
   const { lodging, error, data } = useQuery(GET_SINGLE_PROJECT, {
     variables: {
       id: projectId,
     },
   })
-  const [deleteProject] = useMutation(DELETE_PROJECT, {
-    variables: {
-      id: projectId,
-    },
-    refetchQueries: [{ query: GET_ALL_PROJECTS }],
-  })
+  
 
   if (lodging) return <p>Loading...</p>
 
@@ -72,20 +67,7 @@ const SingleProject = () => {
               </div>
               <div className="flex justify-between items-center my-4">
                 <UpdateProject project={data.project}></UpdateProject>
-                <button
-                  type="button"
-                  className=" btn py-1 btn-warning"
-                  onClick={() => {
-                    deleteProject({
-                      variables: {
-                        id: projectId,
-                      },
-                    })
-                    navigate('/')
-                  }}
-                >
-                  Delete
-                </button>
+                <DeleteProject projectId={projectId}></DeleteProject>
               </div>
             </div>
           </div>
