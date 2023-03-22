@@ -47,7 +47,7 @@ const cache = new InMemoryCache({
   },
 })
 const client = new ApolloClient({
-  uri: 'http://localhost:5500/graphql',
+  uri: 'https://hello-render-y61p.onrender.com/graphql',
   cache,
 })
 function App() {
