@@ -2,6 +2,7 @@ import React from 'react'
 import { FaBan } from 'react-icons/fa'
 import { gql, useMutation, useQuery } from '@apollo/client'
 import { DELETE_CLIENT, GET_CLIENTS } from '../query/clientQuery'
+import { GET_ALL_PROJECTS } from '../query/projectQuery'
 
 const ClientRow = ({ client, setSingleClientId }) => {
   const [deleteClient] = useMutation(DELETE_CLIENT)
@@ -39,7 +40,11 @@ const ClientRow = ({ client, setSingleClientId }) => {
                 variables: {
                   id: client.id,
                 },
-                update(cache, { data: { deleteClient } }) {
+                refetchQueries: [
+                  { query: GET_CLIENTS },
+                  { query: GET_ALL_PROJECTS },
+                ],
+                /*  update(cache, { data: { deleteClient } }) {
                   const { clients } = cache.readQuery({ query: GET_CLIENTS })
                   cache.writeQuery({
                     query: GET_CLIENTS,
@@ -49,8 +54,7 @@ const ClientRow = ({ client, setSingleClientId }) => {
                       ),
                     },
                   })
-                },
-                // refetchQueries: [{ query: GET_CLIENTS }],
+                }, */
               })
             }
             className="w-10 h-10   flex items-center justify-center  bg-orange-500 hover:bg-orange-700 text-white font-bold rounded-full"
