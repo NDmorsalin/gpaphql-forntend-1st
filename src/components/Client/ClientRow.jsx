@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaBan } from 'react-icons/fa'
 import { gql, useMutation, useQuery } from '@apollo/client'
-import { DELETE_CLIENT, GET_CLIENTS } from '../query/allQuery'
+import { DELETE_CLIENT, GET_CLIENTS } from '../query/clientQuery'
 
 const ClientRow = ({ client, setSingleClientId }) => {
   const [deleteClient] = useMutation(DELETE_CLIENT)

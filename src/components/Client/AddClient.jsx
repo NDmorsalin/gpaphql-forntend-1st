@@ -1,6 +1,7 @@
 import { useMutation } from '@apollo/client'
 import React, { useState } from 'react'
-import { ADD_CLIENT, GET_CLIENTS } from '../query/allQuery'
+import { ADD_CLIENT, GET_CLIENTS } from '../query/clientQuery'
+import { FaUser } from 'react-icons/fa'
 
 const AddClient = () => {
   const [name, setName] = useState('')
@@ -31,19 +32,22 @@ const AddClient = () => {
       setName('')
       setEmail('')
       setPhone('')
-    }else{
+    } else {
       return alert('Please enter All fields')
     }
-
   }
   return (
     <>
+      <label htmlFor="addClient" className="btn">
+        <FaUser className="mr-2"></FaUser>
+        Add Client
+      </label>
       {/* Put this part before </body> tag */}
-      <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+      <input type="checkbox" id="addClient" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box relative">
           <label
-            htmlFor="my-modal-3"
+            htmlFor="addClient"
             className="btn btn-sm btn-circle absolute right-2 top-2"
           >
             ✕

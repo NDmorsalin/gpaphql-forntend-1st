@@ -4,7 +4,29 @@ import './App.css'
 import AddClient from './components/Client/AddClient'
 import Client from './components/Client/Clients'
 import { Header } from './components/Header/Header'
-import { FaUser } from 'react-icons/fa'
+import AllProject from './components/Project/AllProject'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import SingleProject from './Pages/SingleProject'
+import Home from './Pages/Home'
+import Root from './Pages/Root'
+// import rootRoute from './components/router/RootRoute'
+
+const rootRoute = createBrowserRouter([
+  {
+    path: '/',
+    element: <Root></Root>,
+    children: [
+      {
+        path: '/',
+        element: <Home></Home>,
+      },
+      {
+        path: 'projects/:projectId',
+        element: <SingleProject></SingleProject>,
+      },
+    ],
+  },
+])
 
 const cache = new InMemoryCache({
   typePolicies: {
@@ -29,16 +51,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div className="container mx-auto">
-        <Header />
-        {/* The button to open modal */}
-        <div className="my-8">
-          <label htmlFor="my-modal-3" className="btn">
-            <FaUser className="mr-2"></FaUser>
-            Add Client
-          </label>
-        </div>
-        <AddClient></AddClient>
-        <Client />
+        <RouterProvider router={rootRoute} />
       </div>
     </ApolloProvider>
   )

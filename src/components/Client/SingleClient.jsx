@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client'
-import { GET_CLIENT } from '../query/allQuery'
+import { GET_CLIENT } from '../query/clientQuery'
 
 function SingleClient({ clientId }) {
   const { loading, error, data } = useQuery(GET_CLIENT, {

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { gql, useQuery } from '@apollo/client'
 import ClientRow from './ClientRow'
 
-import { GET_CLIENTS } from '../query/allQuery'
+import { GET_CLIENTS } from '../query/clientQuery'
 import SingleClient from './SingleClient'
 
 const Client = () => {
@@ -19,7 +19,7 @@ const Client = () => {
     <>
       {!loading && !error && data && (
         <div>
-          <h1 className="text-center text-3xl font-bold mb-4" >All Clients</h1>
+          <h1 className="text-center text-3xl font-bold mb-4">All Clients</h1>
 
           <div className="max-w-2xl mx-auto">
             <div className="flex flex-col">
