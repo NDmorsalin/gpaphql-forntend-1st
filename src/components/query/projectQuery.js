@@ -62,5 +62,21 @@ mutation updateProject($id:ID!, $name:String!, $description:String!, $status:Pro
     }
 }
     `
+const DELETE_PROJECT = gql`
+mutation deleteProject($id:ID!){
+    deleteProject(id:$id){
+        id
+        name
+        description
+        status
+        client{
+            id
+            name
+            email
+            phone
+        }
+    }
+}
+`
 
-export { GET_ALL_PROJECTS, GET_SINGLE_PROJECT, ADD_PROJECT, UPDATE_PROJECT };
+export { GET_ALL_PROJECTS, GET_SINGLE_PROJECT, ADD_PROJECT, UPDATE_PROJECT, DELETE_PROJECT };

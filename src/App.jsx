@@ -37,6 +37,11 @@ const cache = new InMemoryCache({
             return incoming
           },
         },
+        projects: {
+          merge(existing, incoming) {
+            return incoming
+          },
+        },
       },
     },
   },
